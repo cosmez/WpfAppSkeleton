@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                             Style="{StaticResource MaterialDesignWindow}"
+                             xmlns:local="clr-namespace:WpfApp"
+                             xmlns:viewModels="clr-namespace:WpfApp.Models.ViewModels;assembly=WpfApp.Models"
+                             mc:Ignorable="d"  
+                             Title="Skeleton WPF App" Height="450" Width="800" DataContext="{Binding Path=MainViewModel,   
+   Source={StaticResource ViewModelLocator}}" >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadDataCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid  >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Column="0">Menu</TextBox>
+        <Frame Grid.Column="1"></Frame>
+    </Grid>
+</Window>
