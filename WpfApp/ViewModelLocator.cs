@@ -4,26 +4,19 @@ using WpfApp.Models.ViewModels;
 
 namespace WpfApp
 {
+    /// <summary>
+    /// ViewModelLocator, used by the views to locate the ViewModel in runtime and design time
+    /// </summary>
     public class ViewModelLocator
     {
-        private readonly DependencyObject _dummy = new DependencyObject();
+        private readonly DependencyObject _dummy = new();
         
-        public MainWindowViewModel MainViewModel
-        {
-            get
-            {
-                if (IsInDesignMode())
-                {
-                    return new MainWindowViewModel();
-                }
-
-                return App.GetService<MainWindowViewModel>();
-            }
-        }
-
+        //Include your view models here
+        public MainWindowViewModel MainViewModel => GetViewModel<MainWindowViewModel>();
         public GridPageViewModel GridPageViewModel => GetViewModel<GridPageViewModel>();
-        
-        
+        public FormPageViewModel FormPageViewModel => GetViewModel<FormPageViewModel>();
+
+
         private T GetViewModel<T>() where T : notnull, new()
         {
             if (IsInDesignMode())

@@ -4,24 +4,39 @@
                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                             xmlns:local="clr-namespace:WpfApp.Models.ViewModels;assembly=WpfApp.Models"
+                             xmlns:pages="clr-namespace:WpfApp.Pages"
                              Style="{StaticResource MaterialDesignWindow}"
-                             xmlns:local="clr-namespace:WpfApp"
-                             xmlns:viewModels="clr-namespace:WpfApp.Models.ViewModels;assembly=WpfApp.Models"
                              mc:Ignorable="d"  
                              Title="Skeleton WPF App" Height="450" Width="800" DataContext="{Binding Path=MainViewModel,   
    Source={StaticResource ViewModelLocator}}" >
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadDataCommand}" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-    <Grid  >
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:GridPageViewModel}">
+            <pages:GridPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:FormPageViewModel}">
+            <pages:FormPage />
+        </DataTemplate>
+    </Window.Resources> 
+    <Grid>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBox Grid.Column="0">Menu</TextBox>
-        <Frame Grid.Column="1"></Frame>
+        <ListView Grid.Column="0" ItemsSource="{Binding NavigationItems}"
+                  SelectedItem="{Binding NavigationItem, Mode=TwoWay}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectItemCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Description}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Frame NavigationUIVisibility="Hidden" Grid.Column="1" Content="{Binding CurrentPageViewModel}"></Frame>
     </Grid>
 </Window>

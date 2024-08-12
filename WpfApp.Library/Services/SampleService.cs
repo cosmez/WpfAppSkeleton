@@ -1,4 +1,8 @@
 ﻿namespace WpfApp.Library.Services;
+
+/// <summary>
+/// Generic Service for Injection
+/// </summary>
 public class SampleService
 {
     

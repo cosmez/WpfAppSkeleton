@@ -7,6 +7,7 @@ using WpfApp.Library.Models;
 namespace WpfApp.Library.Services;
 
 /// <summary>
+/// Database Service example that receives an injected Settings
 /// Using Northwind as a database sample
 /// https://en.wikiversity.org/wiki/Database_Examples/Northwind/SQLite
 /// </summary>
