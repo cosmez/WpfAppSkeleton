@@ -14,8 +14,11 @@
         <DataTemplate DataType="{x:Type local:GridPageViewModel}">
             <pages:GridPage />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local:FormPageViewModel}">
-            <pages:FormPage />
+        <DataTemplate DataType="{x:Type local:DialogsPageViewModel}">
+            <pages:DialogsPage />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:TaskCancellationViewModel}">
+            <pages:TaskCancellationPage />
         </DataTemplate>
     </Window.Resources> 
     <Grid>

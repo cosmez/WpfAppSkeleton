@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfApp.Pages
 {
     /// <summary>
-    /// Interaction logic for GridPage.xaml
+    /// Interaction logic for TaskCancellationPage.xaml
     /// </summary>
-    public partial class FormPage : Page
+    public partial class TaskCancellationPage : Page
     {
-        public FormPage()
+        public TaskCancellationPage()
         {
             InitializeComponent();
         }

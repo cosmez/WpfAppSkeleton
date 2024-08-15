@@ -3,5 +3,6 @@
 public enum NavigationPage
 {
     Grid,
-    Form
+    Dialogs,
+    Tasks
 }

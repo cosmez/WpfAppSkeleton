@@ -6,15 +6,15 @@ using WpfApp.Library.Services;
 using WpfApp.Models.ViewModels;
 using System.IO;
 using WpfApp.Models;
+using WpfApp.Services;
 
 namespace WpfApp;
 /// <summary>
 /// TODO:
-///     - [ ] Implement Dialog Service
 ///     - [ ] Add Comments
-///     - [ ] Add StorageService Example
+///     - [X] Implement Dialog Service
+///     - [ ] Add UI example with cancellation
 ///     - [ ] Add Pdfium Render example
-///     - [ ] Add OpenAI Stream example with cancellation
 ///     - [ ] Add AvalonEdit example
 ///     - [ ] Add Tree Control example
 ///     - [ ] Add Markdown rendering example
@@ -48,6 +48,8 @@ public partial class App : Application
             .Build();
         
         Services = ConfigureServices(Configuration);
+
+       
     }
     
     /// <summary>
@@ -74,21 +76,25 @@ public partial class App : Application
         services.AddTransient<SampleService>();
         services.AddTransient<StorageService>();
         services.AddSingleton<DatabaseService>();
-
+        services.AddTransient<IDialogService, DialogService>();
 
 
         //ViewModels
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<GridPageViewModel>();
-        services.AddTransient<FormPageViewModel>();
+        services.AddTransient<DialogsPageViewModel>();
+        services.AddTransient<TaskCancellationViewModel>();
+
 
         //Main navigation items and view model creator
         var items = new NavigationItems();
         items.Add(new NavigationItem() { Description = "Grid Example", Page = NavigationPage.Grid, GetViewModel = GetService<GridPageViewModel> });
-        items.Add(new NavigationItem() { Description = "Form Example", Page = NavigationPage.Form, GetViewModel = GetService<FormPageViewModel> });
+        items.Add(new NavigationItem() { Description = "DialogService Example", Page = NavigationPage.Dialogs, GetViewModel = GetService<DialogsPageViewModel> });
+        items.Add(new NavigationItem() { Description = "Task Cancellation Example", Page = NavigationPage.Tasks, GetViewModel = GetService<TaskCancellationViewModel> });
         services.AddSingleton(items);
 
         return services.BuildServiceProvider();
+        
     }
 
 }
