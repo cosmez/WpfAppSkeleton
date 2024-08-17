@@ -13,7 +13,7 @@ namespace WpfApp;
 /// TODO:
 ///     - [ ] Add Comments
 ///     - [X] Implement Dialog Service
-///     - [ ] Add UI example with cancellation
+///     - [X] Add UI example with cancellation
 ///     - [ ] Add Pdfium Render example
 ///     - [ ] Add AvalonEdit example
 ///     - [ ] Add Tree Control example
@@ -84,6 +84,7 @@ public partial class App : Application
         services.AddTransient<GridPageViewModel>();
         services.AddTransient<DialogsPageViewModel>();
         services.AddTransient<TaskCancellationViewModel>();
+        services.AddTransient<PdfPageViewModel>();
 
 
         //Main navigation items and view model creator
@@ -91,6 +92,7 @@ public partial class App : Application
         items.Add(new NavigationItem() { Description = "Grid Example", Page = NavigationPage.Grid, GetViewModel = GetService<GridPageViewModel> });
         items.Add(new NavigationItem() { Description = "DialogService Example", Page = NavigationPage.Dialogs, GetViewModel = GetService<DialogsPageViewModel> });
         items.Add(new NavigationItem() { Description = "Task Cancellation Example", Page = NavigationPage.Tasks, GetViewModel = GetService<TaskCancellationViewModel> });
+        items.Add(new NavigationItem() { Description = "PDF User Control Example", Page = NavigationPage.PdfControl, GetViewModel = GetService<PdfPageViewModel> });
         services.AddSingleton(items);
 
         return services.BuildServiceProvider();

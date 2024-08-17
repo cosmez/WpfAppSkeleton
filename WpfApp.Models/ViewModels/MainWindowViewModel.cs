@@ -14,7 +14,7 @@ public partial class MainWindowViewModel : ObservableObject
 {
     private readonly SampleService _sampleService = null!;
     private readonly DatabaseService _databaseService = null!;
-    private readonly GridPageViewModel _gridPageViewModel = null!;
+    //private readonly GridPageViewModel _gridPageViewModel = null!;
     private readonly NavigationItems _navigationItems = null!;
 
     [ObservableProperty]
@@ -64,9 +64,9 @@ public partial class MainWindowViewModel : ObservableObject
     [RelayCommand]
     private void SelectItem()
     {
-        if (_navigationItem is not null)
+        if (NavigationItem is not null)
         {
-            WeakReferenceMessenger.Default.Send(new NavigationPageChangedMessage(_navigationItem.Page));
+            WeakReferenceMessenger.Default.Send(new NavigationPageChangedMessage(NavigationItem.Page));
         }
     }
  

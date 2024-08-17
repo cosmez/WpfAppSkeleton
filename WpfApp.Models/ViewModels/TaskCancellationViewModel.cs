@@ -7,7 +7,6 @@ using WpfApp.Library.Services;
 namespace WpfApp.Models.ViewModels;
 public partial class TaskCancellationViewModel : ObservableObject
 {
-    private Task? _longTask;
     private CancellationTokenSource? _cancellationToken;
     
     [ObservableProperty]
@@ -29,7 +28,9 @@ public partial class TaskCancellationViewModel : ObservableObject
         ProgressText = "Running Task";
         try
         {
+            //notify the UI that the task can be cancelled with another button
             StopLongTaskCommand.NotifyCanExecuteChanged();
+            //run a task for 5 minutes
             await Task.Delay(TimeSpan.FromMinutes(5), cancellationToken: _cancellationToken.Token);
         }
         catch (TaskCanceledException ex)
@@ -40,11 +41,13 @@ public partial class TaskCancellationViewModel : ObservableObject
         IsRunning = false;
     }
 
+    //Helper for Stop Command
     private bool CanStopTask() => IsRunning;
     
     [RelayCommand(CanExecute = nameof(CanStopTask))]
     private async Task StopLongTask()
     {
+        //send cancellation message through CancellationTokenSource
         if (_cancellationToken is not null)
             await _cancellationToken.CancelAsync();
         

@@ -4,5 +4,6 @@ public enum NavigationPage
 {
     Grid,
     Dialogs,
-    Tasks
+    Tasks,
+    PdfControl
 }
