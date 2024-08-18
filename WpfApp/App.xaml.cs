@@ -10,15 +10,11 @@ using WpfApp.Services;
 
 namespace WpfApp;
 /// <summary>
-/// TODO:
-///     - [ ] Add Comments
 ///     - [X] Implement Dialog Service
 ///     - [X] Add UI example with cancellation
-///     - [ ] Add Pdfium Render example
-///     - [ ] Add AvalonEdit example
-///     - [ ] Add Tree Control example
-///     - [ ] Add Markdown rendering example
-///     - [ ] Look for more examples
+///     - [X] Add Pdfium Render example
+///     - [X] Add AvalonEdit example
+///     - [X] Add Markdown rendering example
 /// </summary>
 public partial class App : Application
 {
@@ -85,6 +81,7 @@ public partial class App : Application
         services.AddTransient<DialogsPageViewModel>();
         services.AddTransient<TaskCancellationViewModel>();
         services.AddTransient<PdfPageViewModel>();
+        services.AddTransient<MarkdownEditorViewModel>();
 
 
         //Main navigation items and view model creator
@@ -93,6 +90,7 @@ public partial class App : Application
         items.Add(new NavigationItem() { Description = "DialogService Example", Page = NavigationPage.Dialogs, GetViewModel = GetService<DialogsPageViewModel> });
         items.Add(new NavigationItem() { Description = "Task Cancellation Example", Page = NavigationPage.Tasks, GetViewModel = GetService<TaskCancellationViewModel> });
         items.Add(new NavigationItem() { Description = "PDF User Control Example", Page = NavigationPage.PdfControl, GetViewModel = GetService<PdfPageViewModel> });
+        items.Add(new NavigationItem() { Description = "Markdown Editor Example", Page = NavigationPage.MarkdownEditor, GetViewModel = GetService<MarkdownEditorViewModel> });
         services.AddSingleton(items);
 
         return services.BuildServiceProvider();

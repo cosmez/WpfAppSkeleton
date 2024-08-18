@@ -5,5 +5,6 @@ public enum NavigationPage
     Grid,
     Dialogs,
     Tasks,
-    PdfControl
+    PdfControl,
+    MarkdownEditor
 }

@@ -17,6 +17,7 @@ namespace WpfApp
         public DialogsPageViewModel FormPageViewModel => GetViewModel<DialogsPageViewModel>();
         public TaskCancellationViewModel TaskPageViewModel => GetViewModel<TaskCancellationViewModel>();
         public PdfPageViewModel PdfPageViewModel => GetViewModel<PdfPageViewModel>();
+        public MarkdownEditorViewModel MarkdownEditorViewModel => GetViewModel<MarkdownEditorViewModel>();
 
 
         private T GetViewModel<T>() where T : notnull, new()
